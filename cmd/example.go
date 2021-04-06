@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/nak3/go-lvm"
+
+	"github.com/silentred/go-lvm"
 )
 
 func main() {

@@ -28,11 +28,13 @@ func GC() {
 }
 
 //VgOpen opens volume group
-func VgOpen(vgname string, mode string) C.vg_t {
+func VgOpen(vgname string, mode string) *VgObject {
 	if mode == "" {
 		mode = "r"
 	}
-	vg := C.lvm_vg_open(libh, C.CString(vgname), C.CString(mode), 0)
+	vg := &VgObject{}
+	vg.Vgt = C.lvm_vg_open(libh, C.CString(vgname), C.CString(mode), 0)
+
 	return vg
 }
 
@@ -147,8 +149,8 @@ func (v *VgObject) GetName() string {
 }
 
 // GetUuid gets UUID of VG.
-func (v *VgObject) GetUuid() *C.char {
-	return C.lvm_vg_get_uuid(v.Vgt)
+func (v *VgObject) GetUuid() string {
+	return c.GoString(C.lvm_vg_get_uuid(v.Vgt))
 }
 
 // Close closes VG object.

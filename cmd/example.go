@@ -33,21 +33,21 @@ func main() {
 	// Output some data of the VG
 	fmt.Printf("size: %d GiB\n", uint64(vgo.GetSize())/1024/1024/1024)
 	fmt.Printf("pvlist: %v\n", vgo.ListPVs())
-	fmt.Printf("Free size: %d KiB\n", uint64(vgo.GetFreeSize())/1024/1024)
+	fmt.Printf("Free size: %d MiB\n", uint64(vgo.GetFreeSize())/1024/1024)
 
 	// Create a LV object
 	l := &lvm.LvObject{}
 
 	// Create a LV
-	l, err := vgo.CreateLvLinear("go-lvm-example-test-lv", int64(vgo.GetFreeSize())/1024/1024/2)
+	l, err := vgo.CreateLvLinear("go-lvm-example-test-lv", int64(vgo.GetFreeSize())/1024)
 	if err != nil {
 		fmt.Printf("error: %v")
 		return
 	}
 
 	// Output uuid of LV
-	fmt.Printf("Created\n\tuuid: %s\n\tname: %s\n\tattr: %s\n\torigin: %s\n",
-		l.GetUuid(), l.GetName(), l.GetAttr(), l.GetOrigin())
+	fmt.Printf("Created\n\tuuid: %s\n\tname: %s\n\tattr: %s\n\torigin: %s\n\tsize: %d",
+		l.GetUuid(), l.GetName(), l.GetAttr(), l.GetOrigin(), uint64(l.GetSize()))
 
 	// Output uuid of LV
 	l.Remove()

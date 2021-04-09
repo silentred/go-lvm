@@ -150,7 +150,7 @@ func (v *VgObject) GetName() string {
 
 // GetUuid gets UUID of VG.
 func (v *VgObject) GetUuid() string {
-	return c.GoString(C.lvm_vg_get_uuid(v.Vgt))
+	return C.GoString(C.lvm_vg_get_uuid(v.Vgt))
 }
 
 // Close closes VG object.

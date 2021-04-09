@@ -11,9 +11,9 @@ func main() {
 	vglist := lvm.ListVgNames()
 	availableVG := ""
 	// Create a VG object
-	vgo := &lvm.VgObject{}
+	var vgo *lvm.VgObject
 	for i := 0; i < len(vglist); i++ {
-		vgo.Vgt = lvm.VgOpen(vglist[i], "r")
+		vgo = lvm.VgOpen(vglist[i], "r")
 		if vgo.GetFreeSize() > 0 {
 			availableVG = vglist[i]
 			vgo.Close()
@@ -27,7 +27,7 @@ func main() {
 	}
 
 	// Open VG in write mode
-	vgo.Vgt = lvm.VgOpen(availableVG, "w")
+	vgo = lvm.VgOpen(availableVG, "w")
 	defer vgo.Close()
 
 	// Output some data of the VG

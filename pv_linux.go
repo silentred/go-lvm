@@ -1,7 +1,7 @@
 package lvm
 
 //#cgo LDFLAGS: -llvm2app
-//#include "macro_wrapper.h"
+//#include "cfiles/macro_wrapper.h"
 import "C"
 import "fmt"
 

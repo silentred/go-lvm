@@ -16,6 +16,11 @@ func VgOpen(vgname string, mode string) *VgObject {
 	return vg
 }
 
+// CreateLvLinear creates LV Object. s is the size of logical volume in bytes, size should be round up by 4MiB
+func (v *VgObject) CreateLvLinear(n string, s int64) (*LvObject, error) {
+	return nil, nil
+}
+
 // GetName gets name of VG.
 func (v *VgObject) GetName() string {
 	return ""

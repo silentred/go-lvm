@@ -11,13 +11,18 @@ go-lvm is a go library to call liblvm API based on python-lvm developed in [LVM2
 
 ### Usage
 
-Please refer to [go-doc](https://godoc.org/github.com/nak3/go-lvm#example-LvObject--Createremove).
+Please refer to [go-doc](https://godoc.org/github.com/silentred/go-lvm).
 
 ### Test run
 
 Let's create a available volume group and create and delete a LV.
 
-#### step-1. set up a free VG
+#### step-0: Install lvm2-devel
+```
+sudo yum install lvm2-devel-2.02.130
+```
+
+#### step-1. Setup a new VG
 ~~~
 sudo dd if=/dev/zero of=disk.img bs=1G count=1
 export LOOP=`sudo losetup -f`
